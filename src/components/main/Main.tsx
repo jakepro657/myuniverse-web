@@ -1,6 +1,7 @@
 "use client";
 import Card from "@/components/Card";
 import { useGetPosts } from "@/util/Post";
+import Link from "next/link";
 import { useQuery } from "react-query";
 
 type Props = {};
@@ -15,6 +16,7 @@ const Main = (props: Props) => {
       <main className="p-16 items-center w-full flex min-h-screen flex-col flex-nowrap">
         <header>
           <div className="text-4xl font-bold">Jake Yubin Kim's Devlog</div>
+          <Link href={"/post"}>글쓰기</Link>
         </header>
         <div className="mt-16"></div>
         <div className="flex flex-wrap justify-center">
@@ -26,11 +28,11 @@ const Main = (props: Props) => {
                 title={item.title}
                 username={item.authorId}
                 profile="/next.svg"
-                comments={3}
+                comments={0}
                 content={item.content}
-                date="2023/10/20"
+                date={item.createdAt.slice(0, 10)}
                 image="/next.svg"
-                like={3}
+                like={item?.like}
                 link="/post"
               />
             );
