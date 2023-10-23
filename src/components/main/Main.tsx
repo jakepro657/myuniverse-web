@@ -2,11 +2,13 @@
 import Card from "@/components/Card";
 import { useGetPosts } from "@/util/Post";
 import Link from "next/link";
+import { useEffect } from "react";
 import { useQuery } from "react-query";
 
 type Props = {};
 
 const Main = (props: Props) => {
+  
   const { data } = useQuery(["posts"], useGetPosts);
 
   return (
@@ -17,7 +19,7 @@ const Main = (props: Props) => {
 
           <Link
             href={"/post"}
-            className="bg-black text-white p-2 rounded-3xl text-xl ml-auto mr-4 font-bold"
+            className="bg-white text-black border-2 border-black hover:bg-black hover:text-white p-2 rounded-3xl text-xl ml-auto mr-4 font-bold"
           >
             &nbsp;글쓰기 +&nbsp;
           </Link>
@@ -29,7 +31,7 @@ const Main = (props: Props) => {
           {data?.map((item: any, i: number) => {
             return (
               <Card
-                id={i + 1}
+                id={item.id}
                 key={i}
                 title={item.title}
                 username={item.author.email}
@@ -37,7 +39,7 @@ const Main = (props: Props) => {
                 comments={0}
                 content={item.content}
                 date={item.createdAt.slice(0, 10)}
-                image="/next.svg"
+                image="AK7aPaB1vgEonZqgSEOb9CgB0ppypB1FEFA5MkquwqPktYdV1yrgv6hpCu7QdaDXzLYCz_Sbaojkxx2ogedBbkj_oKRwf_G1Jw=s1600"
                 like={item?.like}
                 link="/post"
               />
