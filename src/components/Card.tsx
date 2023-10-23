@@ -39,7 +39,7 @@ const Card = ({
       <div className="p-4 flex flex-col">
         <div className="h-40">
           <h4 className="text-2xl font-bold">{title}</h4>
-          <p>{content}</p>
+          <p className="w-64 h-24">{content}</p>
         </div>
         <div className="text-gray-500">
           <span>{date}</span>
