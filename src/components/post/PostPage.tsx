@@ -1,8 +1,10 @@
 "use client";
 
 import { useGetPost, useGetPosts } from "@/util/Post";
+import axios from "axios";
 import Link from "next/link";
-import React from "react";
+import { redirect } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 
 type Props = {
@@ -10,9 +12,21 @@ type Props = {
 };
 
 const PostPage = ({ id }: Props) => {
-  const { data } = useQuery(["post"], () => {
+  const [isRedirect, setRedirect] = useState(true);
+
+  const { data, refetch } = useQuery(["post"], () => {
     return useGetPost(id);
   });
+
+  useEffect(() => {
+    if (!isRedirect) redirect("/redirect");
+  }, [isRedirect]);
+
+  const handleDelete = (e: any) => {
+    e.preventDefault()
+    axios.delete(`${process.env.NEXT_PUBLIC_API_URL}/post/${data.id}`)
+    setRedirect(false);
+  }
 
   return (
     <div className="flex flex-col bg-gray-50">
@@ -27,6 +41,7 @@ const PostPage = ({ id }: Props) => {
           <div className="p-2 text-gray-600 flex w-full">
             <div>by {data?.authorId}</div>
             <div className="ms-auto">{data?.createdAt.slice(0, 10)}</div>
+            <button onClick={handleDelete} className="ms-4">삭제</button>
           </div>
           <div className="p-2 flex text-lg flex-wrap justify-center">{data?.content}</div>
         </div>
