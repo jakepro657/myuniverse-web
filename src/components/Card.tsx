@@ -34,7 +34,7 @@ const Card = ({
           pathname: `${link}/${id}`,
         }}
       >
-        <Image src={image} alt="Image" width={300} height={200} />
+        <Image src={`${process.env.NEXT_PUBLIC_IMG_URL}/${image}`} alt="Image" width={300} height={200} />
       </Link>
       <div className="p-4 flex flex-col">
         <div className="h-40">
@@ -48,8 +48,9 @@ const Card = ({
         </div>
       </div>
       <div className="p-4 flex border-t">
-        <Image src={profile} alt="Image" width={48} height={48} />
-        <div>by {username}</div>
+      {/* ${process.env.NEXT_PUBLIC_IMG_URL} */}
+        <Image src={`${profile}`} alt="Image" width={48} height={48} />
+        <div>&nbsp;by {username}</div>
         <div className="ml-auto">{like}</div>
       </div>
     </div>
