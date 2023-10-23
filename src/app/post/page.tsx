@@ -46,7 +46,7 @@ const CreatePostPage = (props: Props) => {
             onChange={(e) => setContent(e.target.value)}
             placeholder="내용"
           />
-          <button type="submit"className="bg-black text-white p-2 rounded-3xl text-xl ml-auto mr-4 font-bold">&nbsp;작성 완료&nbsp;</button>
+          <button type="submit"className="bg-white text-black border-2 border-black hover:bg-black hover:text-white p-2 rounded-3xl text-xl ml-auto mr-4 font-bold">&nbsp;작성 완료&nbsp;</button>
         </form>
       </main>
     </div>
