@@ -3,22 +3,30 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
+        protocol: "https",
         hostname: process.env.NEXT_PUBLIC_IMG_HOST,
-        port: '',
-        pathname: `/${process.env.NEXT_PUBLIC_IMG_PATH}/**`,
+        port: "",
+        pathname: `/**`,
       },
     ],
   },
-    async redirects() {
-        return [
-          {
-            source: '/redirect',
-            destination: '/',
-            permanent: true,
-          },
-        ]
+  async redirects() {
+    return [
+      {
+        source: "/redirect",
+        destination: "/",
+        permanent: true,
       },
-}
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: `/auth/:path*`,
+        destination: `${process.env.NEXT_PUBLIC_API_URL}/auth/:path*`,
+      }
+    ]
+  }
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
