@@ -39,7 +39,7 @@ const PostPage = ({ id }: Props) => {
         <div className="w-[48vw] items-start flex flex-col flex-nowrap">
           <h1 className="p-2 text-4xl font-bold">{data?.title}</h1>
           <div className="p-2 text-gray-600 flex w-full">
-            <div>by {data?.authorId}</div>
+            <div>by {data?.author?.email}</div>
             <div className="ms-auto">{data?.createdAt.slice(0, 10)}</div>
             <button onClick={handleDelete} className="ms-4">삭제</button>
           </div>
